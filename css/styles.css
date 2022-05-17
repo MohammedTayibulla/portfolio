@@ -1,0 +1,354 @@
+
+*{
+font-family: san-serif;
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+outline: none;
+border: none;
+text-decoration: none;
+/*text-transform: capitalize;*/
+/*---IMPORTANT FOR SMOOTH CHANGES-----*/
+transition: all .2s linear;
+/*ABOVE IS IMPORTANT*/
+line-height: 1.5;
+}
+/*
+	.dark{
+	background-color: darkgrey;
+	filter: invert(50%)}
+	*/
+#git-link{
+	text-transform: lowercase;
+	font-size:1rem;
+}
+html{
+scroll-behavior: smooth;
+	font-size: 62.5%;
+	overflow-x: hidden;
+}
+
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 2rem;
+  padding: 5px;
+  border: 2px solid blue;
+  background:transparent;
+  color: black;
+  cursor: pointer;
+  border-radius:50%;
+}
+
+#myBtn:hover {
+  background-color: blue;
+}
+
+.progress-container {
+ position: fixed;
+  width: 100%;
+  height: 2px;
+  background: #ccc;
+}
+
+.progress-bar {
+  height: 2px;
+  background:blue;
+  width: 0%;
+}
+
+
+body{
+/*background-color: #fcf2e8;*/
+background-color:lightblue;
+
+	padding-left: 30rem;
+}
+section{
+	padding: 1rem 5%;
+	min-height: 100vh;
+}
+header{
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	background-color: #222;
+	text-align: center;
+	align-items: center;
+	justify-content: space-between;
+	z-index: 1000;
+	display: flex;
+	flex-flow: column;
+	padding: 8rem 2rem;
+}
+
+#about,#projects{
+	background-color:salmon;
+}
+header .logo{
+	text-transform: uppercase;
+	color: #fff;
+	font-size: 2.2rem;
+	font-weight: bolder;
+}
+
+header .logo span{
+	text-transform: uppercase;
+	color: blue;
+}
+
+header .navbar a{
+	display: block;
+	font-size: 2rem;
+	color: #fff;
+	margin: 2rem 0;
+}
+
+header .navbar a:hover{
+	letter-spacing: .1rem;
+	color: blue;
+}
+
+header .follow a{
+font-size: 2.5rem;
+color: #fff;
+margin: 0.7rem;
+}
+header .follow a:hover{
+	color: blue;
+	z-index: .5rem;
+}
+
+
+
+
+#menu-bars{
+	position: fixed;
+	top: 1rem;
+	right: 1rem;
+	z-index: 10000;
+	color: #fff;
+	background: blue;
+	border-radius: .5rem;
+	padding: 1rem 1.5rem;
+	font-size: 3rem;
+	cursor: pointer;
+	display: none;
+}
+
+.home{
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 1.5rem;
+}
+.home .image{
+	flex: 1 1 40rem;
+}
+.home .image img{
+margin-top: 20px;
+width: 40rem;
+height:50rem;
+object-fit: cover;
+border: 1rem solid white;
+border-radius: 10%;
+box-shadow: 2px 2px 10px grey;
+}
+.home .content{
+	flex: 1 1 40rem;
+}
+
+.home .content .hi{
+font-size: 2rem;
+color: blue;
+}
+.home .content h2{
+font-size: 3rem;
+color: #111;
+}
+
+.home .content h2 span{
+	color: blue;
+	text-transform: uppercase;
+}
+
+.home .content .info{
+	font-size: 2rem;
+	color: #111;
+	padding: .5rem 0;
+}
+
+.home .content .text{
+	font-size: 1.4rem;
+	color: #111;
+	padding: .5rem 0;
+}
+
+.btn{
+	display: inline-block;
+	margin-top: 1rem;
+	padding: .5rem 2rem;
+	background: blue;
+	color: #fff;
+	cursor: pointer;
+	font-size: 1.4rem;
+	border-radius:5px;
+}
+
+.btn:hover{
+	background-color: black;
+	letter-spacing:.1rem;
+}
+
+.about .row-1{
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.5rem;
+	padding-bottom: 2rem;
+}
+.about .row-1 .image{
+flex: 1 1 25rem;
+}
+.about .row-1 .content{
+flex: 1 1 50rem;
+}
+
+
+.about .row-1 .content h3{
+color: #333;
+font-size: 4rem;
+}
+.about .row-1 .content p{
+color: black;
+font-size: 1.5rem;
+padding: .5rem 0;
+}
+
+.about .row-1 .content .box-container{
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.5rem;
+	padding: .5rem 0;
+}
+.about .row-1 .content .box-container .box{
+
+flex: 1 1 20rem;
+
+}
+ span{
+	color: blue;
+}
+
+.heading{
+	font-size: 3rem;
+}
+.about .row-2{
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.5rem;
+align-items: center;
+}
+
+.about .row-2 .skills{
+flex: 1 1 40rem;
+}
+
+
+.about .row-2 .skills .progress{
+padding:0.5rem 0;
+}
+.about .row-2 .skills .progress h3{
+display: flex;
+justify-content: space-between;
+padding: .7rem 0;
+font-size: 1.5rem;
+}
+
+.about .row-2 .box-container{
+flex: 1 1 40rem;
+display: flex;
+flex-wrap: wrap;
+gap: 1.5rem;
+}
+.about .row-2 .box-container .box{
+flex: 1 1 15rem;
+background-color: white;
+padding: 2rem;
+border-radius: .5rem;
+box-shadow: 0 0.5rem 1rem grey;
+}
+.about .row-2 .box-container .box h3{
+	color: blue;
+	font-size: 3rem;
+}
+.about .row-2 .box-container .box p{
+	color: #666;
+	font-size: 1.5rem;
+	padding-top: .5rem;
+}
+
+.skills .box-container,.projects .box-container{
+flex: 1 1 40rem;
+display: flex;
+flex-wrap: wrap;
+gap: 1.5rem;
+}
+.skills .box-container .box,.projects .box-container .box{
+flex: 1 1 23rem;
+background-color: white;
+padding: 2rem;
+border-radius: .5rem;
+box-shadow: 0 0.5rem 1rem grey;
+}
+.skills .box-container .box h3,.projects .box-container .box h3{
+	color: blue;
+	font-size: 2.5rem;
+}
+.skills .box-container .box img{
+	width: 40%;
+}
+.projects .box-container .box img{
+	width: 80%;
+}
+.skills .box-container .box p,.projects .box-container .box p{
+	color: #666;
+	font-size: 1.5rem;
+	padding-top: .5rem;
+}
+h2{
+	color: white;
+}
+/*media queries*/
+@media(max-width: 990px){
+
+html{
+	font-size: 55%;
+}
+body{
+	padding: 0;
+}
+
+#menu-bars{
+display: initial;
+}
+
+header{
+	left: -120%;
+}
+header.active{
+	left: 0%;
+}
+}
+
+
+@media(max-width: 450px){
+
+html{
+	font-size: 50%;
+}
+header{
+	width: 100%;
+}
