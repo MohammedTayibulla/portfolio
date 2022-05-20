@@ -27,7 +27,15 @@ scroll-behavior: smooth;
 	font-size: 62.5%;
 	overflow-x: hidden;
 }
-
+.clear-float{
+	clear: both;
+}
+.float-left{
+float:left;
+height:auto;
+width:60px;
+margin-right: 2%;
+}
 #myBtn {
   display: none;
   position: fixed;
