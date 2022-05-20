@@ -211,6 +211,37 @@ color: #111;
 	letter-spacing:.1rem;
 }
 
+.btntwo{
+	display: inline-block;
+	margin-top: 1rem;
+	padding: .5rem 2rem;
+	background: blue;
+	color: #fff;
+	cursor: pointer;
+	font-size: 1.4rem;
+	border-radius:5px;
+}
+
+.btntwo:hover{
+	background-color: red;
+	letter-spacing:.1rem;
+}
+.btnthree{
+	display: inline-block;
+	margin-top: 1rem;
+	padding: .5rem 2rem;
+	background: blue;
+	color: #fff;
+	cursor: pointer;
+	font-size: 1.4rem;
+	border-radius:5px;
+}
+
+.btnthree:hover{
+	background-color: green;
+	letter-spacing:.1rem;
+}
+
 .about .row-1{
 	display: flex;
 	flex-wrap: wrap;
