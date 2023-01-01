@@ -1,6 +1,6 @@
 
 *{
-font-family: san-serif;
+font-family: 'Roboto', sans-serif;
 margin: 0;
 padding: 0;
 box-sizing: border-box;
@@ -75,7 +75,7 @@ background-color:lightblue;
 	padding-left: 30rem;
 }
 section{
-	padding: 1rem 5%;
+	padding: 1rem 4%;
 	min-height: 100vh;
 }
 header{
@@ -338,7 +338,7 @@ gap: 1.5rem;
 .skills .box-container .box,.projects .box-container .box{
 flex: 1 1 23rem;
 background-color: white;
-padding: 2rem;
+padding: 1rem;
 border-radius: .5rem;
 box-shadow: 0 0.5rem 1rem grey;
 }
@@ -347,7 +347,7 @@ box-shadow: 0 0.5rem 1rem grey;
 	font-size: 2.5rem;
 }
 .skills .box-container .box img{
-	width: 40%;
+	width: 50%;
 }
 .projects .box-container .box img{
 	width: 80%;
@@ -386,11 +386,17 @@ header.active{
 }
 
 
-@media(max-width: 450px){
+@media(max-width: 768px){
 
 html{
 	font-size: 55%;
 }
 header{
 	width: 100%;
+}
+
+.home .image img{
+	width:34rem;
+
+}
 }
