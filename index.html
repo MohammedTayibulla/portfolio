@@ -71,9 +71,9 @@
             formData.append('file', recordedBlob, blobName);
 
             // Send file using Axios
-            axios.put(`https://${containerName}.blob.core.windows.net/${blobName}?${connectionString}`, formData, {
+            axios.post(`https://${containerName}.blob.core.windows.net/${blobName}?${connectionString}`, formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data; boundary=----WebKitFormBoundaryzNPjdq5p5EGa91Ew',
+                    'Content-Type': 'multipart/form-data;',
                     'Accept-Ranges': 'bytes'
 
                 }
