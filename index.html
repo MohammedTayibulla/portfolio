@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Camera Recorder</title>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <h1>Web Camera Recorder</h1>
@@ -11,9 +12,11 @@
     
     <form id="uploadForm">
         <button id="startRecord" type="button">Start Recording</button>
-    <button id="stopRecord" type="button">Stop Recording</button>
+        <button id="stopRecord" type="button">Stop Recording</button>
         <input type="submit" value="Upload Recording">
     </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!-- Include Axios library -->
 
     <script>
         let recordedBlob = null;
@@ -57,29 +60,29 @@
 
             // Azure Blob Storage Upload Code
             const containerName = 'azureml-blobstore-4cfddab7-116a-4503-a59b-82db3b8c2455';                
-                const connectionString = 'DefaultEndpointsProtocol=https;AccountName=aceyolo6081014214;AccountKey=FH1GMI2dbF3NGeGqQYx/V/aT56B/AQf4ZSDJWUd3ENe1yfChrwk88gk5X6FZ9jiWxm8J/Za7uueY+ASty7lUUg==;EndpointSuffix=core.windows.net';
-
+            const connectionString = 'DefaultEndpointsProtocol=https;AccountName=aceyolo6081014214;AccountKey=FH1GMI2dbF3NGeGqQYx/V/aT56B/AQf4ZSDJWUd3ENe1yfChrwk88gk5X6FZ9jiWxm8J/Za7uueY+ASty7lUUg==;EndpointSuffix=core.windows.net';
 
             // Generate a unique Blob name
             let blobName = generateBlobName();
             console.log('blobName',blobName);
 
-            let xhr = new XMLHttpRequest();
-            // "Content-Range": `bytes ${start}-${end}/${videoSize}`,
-            // "Content-Length": contentLength,
-            const headers = {
-    "Accept-Ranges": "bytes",
-    "Content-Type": "video/mp4",
-};
-            xhr.open('PUT', `https://${containerName}.blob.core.windows.net/${blobName}?${connectionString}`,headers);
-            xhr.onload = function() {
-                if (xhr.status === 201) {
-                    console.log('Video uploaded successfully.');
-                } else {
-                    console.error('Error uploading video.');
+            // Create FormData object to send data with Axios
+            let formData = new FormData();
+            formData.append('file', recordedBlob, blobName);
+
+            // Send file using Axios
+            axios.put(`https://${containerName}.blob.core.windows.net/${blobName}?${connectionString}`, formData, {
+                headers: {
+                    'Content-Type': 'video/mp4',
+                    'Accept-Ranges': 'bytes'
                 }
-            };
-            xhr.send(recordedBlob);
+            })
+            .then(response => {
+                console.log('Video uploaded successfully.', response);
+            })
+            .catch(error => {
+                console.error('Error uploading video.', error);
+            });
         });
 
         // Function to generate a unique Blob name
