@@ -73,8 +73,9 @@
             // Send file using Axios
             axios.put(`https://${containerName}.blob.core.windows.net/${blobName}?${connectionString}`, formData, {
                 headers: {
-                    'Content-Type': 'video/mp4',
+                    'Content-Type': 'multipart/form-data; boundary=----WebKitFormBoundaryzNPjdq5p5EGa91Ew',
                     'Accept-Ranges': 'bytes'
+
                 }
             })
             .then(response => {
