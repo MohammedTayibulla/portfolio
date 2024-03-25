@@ -65,7 +65,13 @@
             console.log('blobName',blobName);
 
             let xhr = new XMLHttpRequest();
-            xhr.open('PUT', `https://${containerName}.blob.core.windows.net/${blobName}?${connectionString}`);
+            // "Content-Range": `bytes ${start}-${end}/${videoSize}`,
+            // "Content-Length": contentLength,
+            const headers = {
+    "Accept-Ranges": "bytes",
+    "Content-Type": "video/mp4",
+};
+            xhr.open('PUT', `https://${containerName}.blob.core.windows.net/${blobName}?${connectionString}`,headers);
             xhr.onload = function() {
                 if (xhr.status === 201) {
                     console.log('Video uploaded successfully.');
