@@ -3,79 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Camera Recorder</title>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Video Upload</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-    <h1>Web Camera Recorder</h1>
-    <video id="videoElement" width="400" height="300" autoplay></video>
-    
-    <form id="uploadForm">
-        <button id="startRecord" type="button">Start Recording</button>
-        <button id="stopRecord" type="button">Stop Recording</button>
-        <input type="submit" value="Upload Recording">
-    </form>
-
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!-- Include Axios library -->
+    <h1>Video Upload</h1>
+    <input type="file" id="videoInput" accept="video/*">
+    <button id="uploadButton">Upload Video</button>
 
     <script>
-        let recordedBlob = null;
+        document.getElementById('uploadButton').addEventListener('click', function() {
+            const input = document.getElementById('videoInput');
+            if (input.files.length === 0) {
+                alert('Please select a file.');
+                return;
+            }
+            const file = input.files[0];
+            uploadVideo(file);
+        });
 
-        // Get access to the camera and start recording
-        navigator.mediaDevices.getUserMedia({ video: true })
-            .then(function(stream) {
-                let videoElement = document.getElementById('videoElement');
-                videoElement.srcObject = stream;
-                let mediaRecorder = new MediaRecorder(stream);
-                let chunks = [];
-
-                // Start recording
-                document.getElementById('startRecord').addEventListener('click', function() {
-                    mediaRecorder.start();
-                });
-
-                // Stop recording
-                document.getElementById('stopRecord').addEventListener('click', function() {
-                    mediaRecorder.stop();
-                });
-
-                // Save recorded chunks
-                mediaRecorder.ondataavailable = function(event) {
-                    chunks.push(event.data);
-                };
-
-                // When recording is stopped, create a Blob
-                mediaRecorder.onstop = function() {
-                    recordedBlob = new Blob(chunks, { 'type' : 'video/mp4' });
-                    chunks = [];
-                };
-            })
-            .catch(function(err) {
-                console.error('Error accessing camera: ', err);
-            });
-
-        // Submit form to upload
-        document.getElementById('uploadForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            // Azure Blob Storage Upload Code
+        function uploadVideo(file) {
             const containerName = 'azureml-blobstore-4cfddab7-116a-4503-a59b-82db3b8c2455';                
             const connectionString = 'DefaultEndpointsProtocol=https;AccountName=aceyolo6081014214;AccountKey=FH1GMI2dbF3NGeGqQYx/V/aT56B/AQf4ZSDJWUd3ENe1yfChrwk88gk5X6FZ9jiWxm8J/Za7uueY+ASty7lUUg==;EndpointSuffix=core.windows.net';
 
             // Generate a unique Blob name
-            let blobName = generateBlobName();
-            console.log('blobName',blobName);
+            let blobName = generateBlobName(file.name);
+            console.log('blobName', blobName);
 
             // Create FormData object to send data with Axios
             let formData = new FormData();
-            formData.append('file', recordedBlob, blobName);
+            formData.append('file', file, blobName);
 
             // Send file using Axios
             axios.post(`https://${containerName}.blob.core.windows.net/${blobName}?${connectionString}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data;',
                     'Accept-Ranges': 'bytes'
-
                 }
             })
             .then(response => {
@@ -84,13 +47,13 @@
             .catch(error => {
                 console.error('Error uploading video.', error);
             });
-        });
+        }
 
         // Function to generate a unique Blob name
-        function generateBlobName() {
+        function generateBlobName(fileName) {
             let currentDate = new Date();
             let dateString = currentDate.toISOString().split('.')[0];
-            return 'video_' + dateString.replace(/[-:]/g, '').replace('T', '_').replace(/:/g, '-') + '.webm';
+            return 'video_' + dateString.replace(/[-:]/g, '').replace('T', '_').replace(/:/g, '-') + '_' + fileName;
         }
     </script>
 </body>
